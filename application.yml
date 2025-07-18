@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:test
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# ✅ Place routing 
+routing:
+  rules:
+    - merchantId: MERCH_PLATINUM
+      routeTo: /mock/processor-a
+    - cardType: VISA
+      minAmount: 1000
+      routeTo: /mock/processor-b
+  defaultRoute: /mock/processor-c
